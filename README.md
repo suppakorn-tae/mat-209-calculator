@@ -7,7 +7,7 @@ sdk: gradio
 sdk_version: 6.30.0
 app_file: app.py
 pinned: false
-license: mit
+license: cc-by-nc-4.0
 ---
 
 # MAT-209: Interactive Rank & Nullity Calculator
@@ -36,3 +36,7 @@ An interactive, educational linear algebra workstation built with Gradio and Sym
 
 ## Author
 Suppakorn Krabtong (Tae)
+
+## License
+Educational and Non-Commercial Use Only. Commercial use prohibited without express written permission. See [LICENSE](LICENSE).
+
