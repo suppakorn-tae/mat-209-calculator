@@ -2,7 +2,7 @@
 ================================================================================
 MAT-209: Interactive Rank & Nullity Calculator
 ================================================================================
-Main Application Entry Point for Hugging Face Spaces (with @spaces.GPU support).
+Main Application Entry Point (CPU execution).
 
 Modular Architecture:
 - theme.py: Dark analytical CSS theme, transparent math row, single dynamic brackets.
@@ -244,25 +244,7 @@ KEYBOARD_NAV_JS = """
 
 
 # -----------------------------------------------------------------------------
-# 1. Hugging Face Spaces GPU Decorator Handling
-# -----------------------------------------------------------------------------
-try:
-    import spaces
-    HAVE_SPACES = True
-except ImportError:
-    class spaces:
-        @staticmethod
-        def GPU(func=None, duration=None):
-            if func is None:
-                def decorator(f):
-                    return f
-                return decorator
-            return func
-    HAVE_SPACES = False
-
-
-# -----------------------------------------------------------------------------
-# 2. Matrix Validation & Core Calculation Pipeline (Decorated with @spaces.GPU)
+# 1. Matrix Validation & Core Calculation Pipeline (CPU)
 # -----------------------------------------------------------------------------
 def is_matrix_filled(matrix_grid):
     """
@@ -278,7 +260,6 @@ def is_matrix_filled(matrix_grid):
     return True
 
 
-@spaces.GPU
 def calculate_matrix_results(matrix_grid):
     """
     Runs custom Gauss-Jordan elimination and compiles all visual cards.
@@ -329,7 +310,7 @@ def calculate_matrix_results(matrix_grid):
 
 
 # -----------------------------------------------------------------------------
-# 3. Helper for 2D Grid Extraction from Flat Array
+# 2. Helper for 2D Grid Extraction from Flat Array
 # -----------------------------------------------------------------------------
 def extract_grid(r_val, c_val, flat_vals):
     """Slices 1D flat array into an m x n 2D grid."""
@@ -345,7 +326,7 @@ def extract_grid(r_val, c_val, flat_vals):
 
 
 # -----------------------------------------------------------------------------
-# 4. Reactive Event Handlers (Sliders, Shortcuts, Presets & Live Edits)
+# 3. Reactive Event Handlers (Sliders, Shortcuts, Presets & Live Edits)
 # -----------------------------------------------------------------------------
 def on_dimension_change(r_val, c_val, *flat_vals):
     """Dynamically updates row and cell visibility and recalculates or shows incomplete state."""
@@ -442,7 +423,7 @@ def on_load_matlab_matrix(text):
 
 
 # -----------------------------------------------------------------------------
-# 5. Main Gradio Application Interface (Side-by-Side Left/Right Layout)
+# 4. Main Gradio Application Interface (Side-by-Side Left/Right Layout)
 # -----------------------------------------------------------------------------
 def build_app():
     latex_delims = [
@@ -695,7 +676,7 @@ def build_app():
 
 
 # -----------------------------------------------------------------------------
-# 6. Application Entry Point
+# 5. Application Entry Point
 # -----------------------------------------------------------------------------
 if __name__ == "__main__":
     app = build_app()
