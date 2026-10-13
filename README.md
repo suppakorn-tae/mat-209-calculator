@@ -14,8 +14,6 @@ license: mit
 
 An interactive, educational linear algebra workstation built with Gradio and SymPy for visualizing matrix rank, nullity, step-by-step Gaussian elimination derivation, and the Rank-Nullity Theorem.
 
-**Author:** Suppakorn Krabtong (Tae)
-
 ## Features
 - **Dark Analytical Theme:** Custom CSS styling with high-contrast mathematical typography and responsive bracket containers.
 - **Strict Semantic Color Coding:**
@@ -31,10 +29,10 @@ An interactive, educational linear algebra workstation built with Gradio and Sym
 - **Custom Gauss-Jordan Elimination Engine:** Records and formats every elementary row operation ($R_i \leftrightarrow R_j$, $R_i \leftarrow c R_i$, $R_k \leftarrow R_k - c R_i$) in strict LaTeX.
 - **Exact Rational Arithmetic:** Computations carried out symbolically with SymPy fractions (e.g. $\frac{1}{3}$, $-\frac{5}{2}$), eliminating floating-point round-off errors.
 - **4-Step Analytical Pipeline:** Progressive tab navigation structuring the complete linear algebra workflow: (1) RREF Visual Map, (2) Step-by-Step Derivation, (3) Rank-Nullity Theorem, and (4) Fundamental Subspaces.
-- **Hero Rank & Nullity Scorecards:** Massive, high-contrast KPI cards showcasing $\operatorname{Rank}(A)$ and $\operatorname{Nullity}(A)$ with live percentage totals, subspace dimension badges, and the Rank-Nullity Theorem balance bar.
+- **Hero Rank & Nullity Scorecards:** Massive, high-contrast KPI cards showcasing $\text{Rank}(A)$ and $\text{Nullity}(A)$ with live percentage totals, subspace dimension badges, and the Rank-Nullity Theorem balance bar.
 - **Column Classification & Routing Flow:** Step-by-step visual mapping tracking each column $c_j$ into either Rank (pivot / independent generator) or Nullity (free variable / linearly dependent).
-- **In-Matrix RREF Column Annotations:** Directly aligns column labels ($c_j$) and direction indicators (`↑ Pivot (→ Rank)` vs `↑ Free (→ Nullity)`) directly onto the $\operatorname{RREF}(A)$ matrix.
-- **Theorem Verification & Subspaces:** Dimension balance bar, determinant transpose invariance ($\det(A) = \det(A^T)$), and basis vectors for Column Space $\operatorname{Col}(A)$ and Null Space $\operatorname{Null}(A)$.
+- **In-Matrix RREF Column Annotations:** Directly aligns column labels ($c_j$) and direction indicators (`↑ Pivot (→ Rank)` vs `↑ Free (→ Nullity)`) directly onto the $\text{RREF}(A)$ matrix.
+- **Theorem Verification & Subspaces:** Dimension balance bar, determinant transpose invariance ($\det(A) = \det(A^T)$), and basis vectors for Column Space $\text{Col}(A)$ and Null Space $\text{Null}(A)$.
 
 ## Author
-- **Suppakorn Krabtong (Tae)**
+Suppakorn Krabtong (Tae)
