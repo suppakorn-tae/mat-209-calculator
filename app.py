@@ -244,7 +244,31 @@ KEYBOARD_NAV_JS = """
 
 
 # -----------------------------------------------------------------------------
-# 1. Matrix Validation & Core Calculation Pipeline (CPU)
+# 1. Hugging Face ZeroGPU Compatibility Stub
+# -----------------------------------------------------------------------------
+try:
+    import spaces
+    HAVE_SPACES = True
+except ImportError:
+    class spaces:
+        @staticmethod
+        def GPU(func=None, duration=None):
+            if func is None:
+                def decorator(f):
+                    return f
+                return decorator
+            return func
+    HAVE_SPACES = False
+
+
+@spaces.GPU
+def _hf_spaces_gpu_dummy():
+    """Dummy no-op function to satisfy ZeroGPU startup validation."""
+    return True
+
+
+# -----------------------------------------------------------------------------
+# 2. Matrix Validation & Core Calculation Pipeline (CPU)
 # -----------------------------------------------------------------------------
 def is_matrix_filled(matrix_grid):
     """
@@ -310,7 +334,7 @@ def calculate_matrix_results(matrix_grid):
 
 
 # -----------------------------------------------------------------------------
-# 2. Helper for 2D Grid Extraction from Flat Array
+# 3. Helper for 2D Grid Extraction from Flat Array
 # -----------------------------------------------------------------------------
 def extract_grid(r_val, c_val, flat_vals):
     """Slices 1D flat array into an m x n 2D grid."""
@@ -326,7 +350,7 @@ def extract_grid(r_val, c_val, flat_vals):
 
 
 # -----------------------------------------------------------------------------
-# 3. Reactive Event Handlers (Sliders, Shortcuts, Presets & Live Edits)
+# 4. Reactive Event Handlers (Sliders, Shortcuts, Presets & Live Edits)
 # -----------------------------------------------------------------------------
 def on_dimension_change(r_val, c_val, *flat_vals):
     """Dynamically updates row and cell visibility and recalculates or shows incomplete state."""
@@ -423,7 +447,7 @@ def on_load_matlab_matrix(text):
 
 
 # -----------------------------------------------------------------------------
-# 4. Main Gradio Application Interface (Side-by-Side Left/Right Layout)
+# 5. Main Gradio Application Interface (Side-by-Side Left/Right Layout)
 # -----------------------------------------------------------------------------
 def build_app():
     latex_delims = [
@@ -676,7 +700,7 @@ def build_app():
 
 
 # -----------------------------------------------------------------------------
-# 5. Application Entry Point
+# 6. Application Entry Point
 # -----------------------------------------------------------------------------
 if __name__ == "__main__":
     app = build_app()
